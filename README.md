@@ -1,24 +1,9 @@
-# cryptocurrencyconverter
+# Cryptocurrency Converter
 
-## Project setup
-```
-npm install
-```
+Converter application features includes currency conversion options (BTC, ETH, USD), a price change chart, and a simple cryptocurrency portfolio.
+Link : **duckstati22.github.io/cryptocurrency-converter/**
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Technologies
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ - VueJS
+ - ApexCharts library
