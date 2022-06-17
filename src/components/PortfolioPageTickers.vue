@@ -61,7 +61,8 @@ export default {
     },
     addAmount(ticker, index) {
       ticker.priceInUsd = this.cryptoCurrenciesList[index].prices.usd;
-      ticker.amount = ticker.amount + ticker.insertedAmount;
+      ticker.amount =
+        Math.round((ticker.amount + ticker.insertedAmount) * 1000000) / 1000000;
       ticker.insertedAmount = "";
       localStorage.setItem("tickersList", JSON.stringify(this.tickersList));
       this.$emit("updateTickers", this.tickersList);
@@ -69,7 +70,8 @@ export default {
 
     subtractAmount(ticker, index) {
       ticker.priceInUsd = this.cryptoCurrenciesList[index].prices.usd;
-      ticker.amount = ticker.amount - ticker.insertedAmount;
+      ticker.amount =
+        Math.round((ticker.amount - ticker.insertedAmount) * 1000000) / 1000000;
       ticker.insertedAmount = "";
       localStorage.setItem("tickersList", JSON.stringify(this.tickersList));
       this.$emit("updateTickers", this.tickersList);

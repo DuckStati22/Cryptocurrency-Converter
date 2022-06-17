@@ -30,8 +30,14 @@ export default {
         return 0;
       }
       let sum = this.tickersList
-        .map((item) => item.priceInUsd * item.amount)
-        .reduce((prevValue, currentValue) => prevValue + currentValue);
+        .map(
+          (item) =>
+            Math.round(item.priceInUsd * item.amount * 1000000) / 1000000
+        )
+        .reduce(
+          (prevValue, currentValue) =>
+            Math.round((prevValue + currentValue) * 1000000) / 1000000
+        );
       return sum;
     },
   },
