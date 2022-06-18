@@ -1,7 +1,7 @@
 <template>
   <section class="tickers">
     <h2 class="tickers__heading">My portfolio</h2>
-    <div v-for="(ticker, index) in tickersList" :key="ticker.id" class="ticker">
+    <div v-for="ticker in tickersList" :key="ticker.id" class="ticker">
       <h3 class="ticker__heading">{{ ticker.id.toUpperCase() }}</h3>
       <p class="ticker__amount">{{ ticker.amount }}</p>
       <base-input
@@ -11,9 +11,9 @@
         min="0"
       />
       <div class="ticker__buttons">
-        <base-button @click="addAmount(ticker, index)">ADD</base-button>
+        <base-button @click="addAmount(ticker)">ADD</base-button>
         <base-button
-          @click="subtractAmount(ticker, index)"
+          @click="subtractAmount(ticker)"
           :disabled="comparedAmounts(ticker)"
         >
           SUBTRACT
@@ -40,9 +40,18 @@ export default {
       tickersList: {},
     };
   },
+
   created() {
     this.createTickersList();
+    this.updateTickersPriceInUsd();
   },
+
+  computed: {
+    tickersPriceInUsd() {
+      return this.cryptoCurrenciesList.map((item) => [item.prices.usd]);
+    },
+  },
+
   methods: {
     createTickersList() {
       if (localStorage.getItem("tickersList") === null) {
@@ -59,8 +68,13 @@ export default {
         this.$emit("updateTickers", this.tickersList);
       }
     },
-    addAmount(ticker, index) {
-      ticker.priceInUsd = this.cryptoCurrenciesList[index].prices.usd;
+    updateTickersPriceInUsd() {
+      this.tickersList.map(
+        (item, index) => (item.priceInUsd = this.tickersPriceInUsd[index])
+      );
+    },
+
+    addAmount(ticker) {
       ticker.amount =
         Math.round((ticker.amount + ticker.insertedAmount) * 1000000) / 1000000;
       ticker.insertedAmount = "";
@@ -68,8 +82,7 @@ export default {
       this.$emit("updateTickers", this.tickersList);
     },
 
-    subtractAmount(ticker, index) {
-      ticker.priceInUsd = this.cryptoCurrenciesList[index].prices.usd;
+    subtractAmount(ticker) {
       ticker.amount =
         Math.round((ticker.amount - ticker.insertedAmount) * 1000000) / 1000000;
       ticker.insertedAmount = "";
@@ -79,6 +92,12 @@ export default {
 
     comparedAmounts(ticker) {
       return ticker.amount - ticker.insertedAmount < 0;
+    },
+  },
+
+  watch: {
+    tickersPriceInUsd() {
+      this.updateTickersPriceInUsd();
     },
   },
 };
