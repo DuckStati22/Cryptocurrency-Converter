@@ -9,7 +9,7 @@
       <h2 class="converter-page__heading">Two-week currencies chart</h2>
       <apexchart
         type="area"
-        width="80%"
+        height="80%"
         :options="chartData.chartOptions"
         :series="chartData.series"
       ></apexchart>
@@ -83,7 +83,7 @@ export default {
               breakpoint: 675,
               options: {
                 chart: {
-                  width: "100%",
+                  height: "80%",
                 },
               },
             },
@@ -120,7 +120,7 @@ export default {
                 return val;
               },
               style: {
-                fontSize: "0.8em",
+                fontSize: "0.7em",
               },
             },
           },
@@ -150,37 +150,37 @@ export default {
 
 <style scoped>
 .converter-page__wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 2fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
 }
 .converter-page__form {
-  grid-area: 1 / 1 / 2 / 2;
+  flex: 1 1 auto;
 }
 .converter-page__chart {
-  grid-area: 2 / 1 / 3 / 2;
-  justify-content: center;
-  padding-top: 15px;
-}
-.converter-page__heading {
-  width: 100%;
-  text-align: center;
-}
-.vue-apexcharts {
+  flex: 1 1 60%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 @media screen and (max-width: 675px) {
   .converter-page__wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    gap: 0;
+  }
+}
+
+@media screen and (max-width: 675px) and (max-height: 714px),
+  screen and (max-height: 599px) {
+  section {
+    height: 100%;
+    scroll-snap-align: start;
+  }
+  .converter-page__wrapper {
+    display: block;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
   }
 }
 </style>

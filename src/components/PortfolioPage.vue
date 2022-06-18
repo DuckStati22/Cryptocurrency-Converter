@@ -17,7 +17,7 @@
         <h2 class="chart__heading">Portfolio chart</h2>
         <apexchart
           type="pie"
-          width="70%"
+          height="80%"
           :options="pieChartData.chartOptions"
           :series="pieChartData.series"
         ></apexchart>
@@ -62,7 +62,7 @@ export default {
               enabled: true,
               color: "#003F5C",
               shadeTo: "light",
-              shadeIntensity: 1,
+              shadeIntensity: 0.5,
             },
           },
           labels: [],
@@ -76,10 +76,40 @@ export default {
           },
           responsive: [
             {
+              breakpoint: 960,
+              options: {
+                chart: {
+                  // height: "70%",
+                },
+              },
+            },
+            {
               breakpoint: 675,
               options: {
                 chart: {
-                  width: "100%",
+                  // height: "90%",
+                },
+                legend: {
+                  show: false,
+                  position: "bottom",
+                  fontSize: "16px",
+                  fontFamily: "IBM Plex Sans",
+                  labels: {
+                    colors: ["#ebedfc"],
+                  },
+                  markers: {
+                    width: 14,
+                    height: 14,
+                    strokeWidth: "2px",
+                    strokeColor: "#ebedfc",
+                    radius: 12,
+                    offsetX: 0,
+                    offsetY: 0,
+                  },
+                  itemMargin: {
+                    horizontal: 10,
+                    vertical: 10,
+                  },
                 },
               },
             },
@@ -117,17 +147,15 @@ export default {
 .porfolio-page__wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 1.75fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-template-rows: 1.5fr 2fr;
+  gap: 1.5vh;
 }
 .porfolio-page__tickers {
   grid-area: 1 / 1 / 2 / 3;
 }
 .portfolio-page__no-tickers {
-  grid-area: 2 / 1 / 2 / 3;
+  grid-area: 2 / 1 / 3 / 3;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .porfolio-page__evaluation {
@@ -137,40 +165,66 @@ export default {
   grid-area: 2 / 2 / 3 / 3;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-}
-.chart__heading {
-  text-align: center;
-}
-.vue-apexcharts {
-  display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 @media screen and (max-width: 675px) {
   .porfolio-page__wrapper {
-    display: grid;
+    gap: 0;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 0.5fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-template-rows: repeat(2, 1fr) 1.5fr;
   }
   .porfolio-page__tickers {
     grid-area: 1 / 1 / 2 / 2;
   }
   .portfolio-page__no-tickers {
-    grid-area: 2 / 1 / 3 / 2;
-    text-align: center;
-  }
-  .porfolio-page__chart {
-    grid-area: 2 / 1 / 3 / 2;
-    gap: 30px;
-    justify-content: center;
-    padding-top: 30px;
+    grid-area: 2 / 1 / 4 / 2;
   }
   .porfolio-page__evaluation {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  .porfolio-page__chart {
     grid-area: 3 / 1 / 4 / 2;
+    padding-top: 0;
+  }
+  .chart__heading {
+    display: none;
+  }
+}
+@media screen and (max-width: 450px), screen and (max-height: 599px) {
+  .porfolio-page__wrapper {
+    display: block;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  .porfolio-page__tickers {
+    height: 100%;
+    scroll-snap-align: start;
+  }
+  .portfolio-page__no-tickers {
+    scroll-snap-align: start;
+    height: 100%;
+  }
+  .porfolio-page__evaluation {
+    height: 50%;
+    scroll-snap-align: start;
+  }
+  .porfolio-page__chart {
+    height: 50%;
+  }
+}
+
+@media screen and (max-height: 535px) {
+  .porfolio-page__evaluation {
+    height: 100%;
+  }
+  .porfolio-page__chart {
+    height: 100%;
+    scroll-snap-align: start;
+  }
+  .chart__heading {
+    display: block;
   }
 }
 </style>

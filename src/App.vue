@@ -1,20 +1,16 @@
 <template>
   <div class="app__wrapper">
     <navigation-bar @changePage="changePage" class="app__nav" />
-    <transition name="fade" appear>
-      <converter-page
-        v-if="currentPage === 'converter'"
-        :currenciesList="currenciesList"
-        class="app__converter-page"
-      />
-    </transition>
-    <transition name="fade" appear>
-      <portfolio-page
-        v-if="currentPage === 'portfolio'"
-        :cryptoCurrenciesList="cryptoCurrenciesList"
-        class="app__portfolio-page"
-      />
-    </transition>
+    <converter-page
+      v-if="currentPage === 'converter'"
+      :currenciesList="currenciesList"
+      class="app__converter-page"
+    />
+    <portfolio-page
+      v-if="currentPage === 'portfolio'"
+      :cryptoCurrenciesList="cryptoCurrenciesList"
+      class="app__portfolio-page"
+    />
   </div>
 </template>
 
@@ -23,6 +19,7 @@ import { loadPrices } from "./api";
 import NavigationBar from "./components/NavigationBar.vue";
 import ConverterPage from "./components/ConverterPage.vue";
 import PortfolioPage from "./components/PortfolioPage.vue";
+import "large-small-dynamic-viewport-units-polyfill";
 
 export default {
   name: "App",
@@ -95,62 +92,28 @@ export default {
 </script>
 
 <style>
-html {
-  background-color: #1a1d27;
-}
-body {
-  max-width: 1040px;
-  margin: 0 auto;
-}
-body,
-html {
-  height: 100vh;
-}
 .app__wrapper {
-  padding: 20px 0;
+  width: 100%;
   height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 8fr;
-  grid-row-gap: 20px;
+  height: calc(var(--1dvh, 1vh) * 100);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  padding: 1.5vh 0;
 }
 .app__nav {
-  grid-area: 1 / 1 / 2 / 2;
+  flex: 0 0 60px;
 }
 .app__converter-page,
 .app__portfolio-page {
-  grid-area: 2 / 1 / 3 / 2;
-}
-section,
-nav {
-  padding: 0 15px;
-  background-color: #222633;
-  border-radius: 20px;
+  flex: 1 1 auto;
 }
 
-.fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-.fade-leave-active {
-  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.fade-enter-from,
-.fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
-
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 675px), screen and (max-height: 599px) {
   .app__wrapper {
-    grid-row-gap: 0px;
-  }
-  section,
-  nav {
-    padding: 0 5px;
-    border-radius: 0;
-  }
-  body {
-    max-width: 675px;
+    gap: 0;
+    padding: 0;
   }
 }
 </style>

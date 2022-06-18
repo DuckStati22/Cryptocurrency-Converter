@@ -4,13 +4,30 @@
     <div class="evaluation__group">
       <p
         class="evaluation__group-item"
-        v-for="currency in tickersList"
+        v-for="currency in notEmptyTickers"
         :key="currency.id"
       >
-        {{ currency.id.toUpperCase() }}: {{ getCurrencyInUsd(currency) }}$
+        {{ currency.id.toUpperCase() }}:<br />
+        {{ getCurrencyInUsd(currency) }}$
       </p>
-      <p class="evaluation__group-item">Total: {{ totalSum }}$</p>
+      <p class="evaluation__group-item">Total:<br />{{ totalSum }}$</p>
     </div>
+    <p class="clue">
+      <svg
+        class="clue__svg"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 330 330"
+      >
+        <path
+          id="XMLID_224_"
+          d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394
+	l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393
+	C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"
+        />
+      </svg>
+      swipe up
+    </p>
   </section>
 </template>
 
@@ -25,6 +42,9 @@ export default {
   },
 
   computed: {
+    notEmptyTickers() {
+      return this.tickersList.filter((item) => item.amount > 0);
+    },
     totalSum() {
       if (this.tickersList.length === 0) {
         return 0;
@@ -55,37 +75,42 @@ export default {
 
 <style scoped>
 .evaluation {
-  text-align: center;
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 5em;
-}
-.evaluation__heading {
-  width: 100%;
-  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
 }
 .evaluation__group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 .evaluation__group-item {
   font-size: 1.5em;
 }
 .evaluation__group-item:last-child {
+  margin-top: 2vh;
   font-weight: bold;
 }
 
-@media screen and (max-width: 675px) {
-  .evaluation {
+@media screen and (max-width: 675px), screen and (max-height: 599px) {
+  .evaluation__group {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 10vw;
+  }
+  .evaluation__group-item:last-child {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 535px) {
+  .clue {
+    display: flex;
+  }
+  .evaluation {
     justify-content: flex-start;
-    gap: 25px;
-    padding: 30px 5px;
+    gap: 15%;
   }
 }
 </style>

@@ -9,7 +9,7 @@
         xmlns="http://www.w3.org/2000/svg"
         fill-rule="evenodd"
         clip-rule="evenodd"
-        transform="rotate(180)"
+        style="transform: rotate(180deg)"
       >
         <path
           d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"
@@ -55,7 +55,6 @@ export default {
 
 <style scoped>
 .nav {
-  min-height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,20 +63,19 @@ export default {
   font-weight: bold;
   letter-spacing: 0.075em;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  gap: 0.5em;
   transition: box-shadow 0.3s;
 }
 .nav__button:hover {
   box-shadow: 0 0.1em 0;
 }
 .nav__svg {
-  width: 1.5em;
-  height: 1.5em;
   fill: #ebedfc;
+  width: 1.3em;
+  height: 1.3em;
 }
 
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 960px) {
   .nav__button:hover {
     box-shadow: none;
   }

@@ -1,16 +1,17 @@
 body {
+  color: #ebedfc;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 1.125rem;
-  color: #ebedfc;
 }
 button, input, select {
   color: #222633;
 }
 h2 {
-  text-transform: uppercase;
   font-weight: bold;
   font-size: 1.602rem;
   letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
 }
 h3 {
   font-weight: bold;

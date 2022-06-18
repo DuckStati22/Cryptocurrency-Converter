@@ -13,12 +13,12 @@ export default {
 <style scoped>
 .button {
   background-color: #ebedfc;
-  padding: 0.25em 0.5em;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  padding: 0.25em 0.5em;
   transition: all 0.3s;
 }
 .button:hover {
@@ -29,7 +29,7 @@ export default {
   cursor: default;
 }
 
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 960px) {
   .button:hover {
     filter: opacity(100%);
   }

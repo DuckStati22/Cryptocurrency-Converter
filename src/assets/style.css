@@ -1,0 +1,56 @@
+html,
+body {
+  height: 100%;
+}
+
+html {
+  background-color: #1a1d27;
+}
+body {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+section,
+nav {
+  background-color: #222633;
+  border-radius: 15px;
+  padding: 20px 10px;
+}
+
+.clue {
+  display: none;
+  position: absolute;
+  bottom: 0.5vh;
+  font-size: 0.8em;
+  flex-direction: column;
+  align-items: center;
+}
+.clue__svg {
+  width: 1em;
+  height: 1em;
+  fill: #ebedfc;
+}
+
+@media screen and (max-width: 960px) {
+  body {
+    max-width: 675px;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  body {
+    max-width: none;
+  }
+  section,
+  nav {
+    border-radius: 0;
+  }
+}
+
+@media screen and (max-width: 675px) and (max-height: 714px), screen and (max-height: 599px) {
+  section,
+  nav {
+    border-radius: 0;
+  }
+}
