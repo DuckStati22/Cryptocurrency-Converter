@@ -66,6 +66,11 @@ export default {
             },
           },
           labels: [],
+          tooltip: {
+            y: {
+              formatter: (seriesname) => seriesname + " $",
+            },
+          },
           legend: {
             show: false,
           },
@@ -95,7 +100,8 @@ export default {
     updateTickers(tickers) {
       this.tickersList = tickers;
       tickers.map((item, index) => {
-        this.pieChartData.series[index] = item.amount;
+        this.pieChartData.series[index] =
+          Math.round(item.priceInUsd * item.amount * 1000000) / 1000000;
         this.pieChartData.chartOptions.labels[index] = item.id.toUpperCase();
       });
       if (this.pieChartData.series.every((item) => item === 0)) {
