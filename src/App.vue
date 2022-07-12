@@ -60,8 +60,6 @@ export default {
   created() {
     if (localStorage.getItem("currentPage")) {
       this.currentPage = localStorage.getItem("currentPage");
-    } else {
-      this.currentPage === "converter";
     }
     this.updatePrices();
   },
