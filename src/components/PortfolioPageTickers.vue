@@ -5,10 +5,9 @@
       <div v-for="ticker in tickersList" :key="ticker.id" class="ticker">
         <h3 class="ticker__heading">{{ ticker.id.toUpperCase() }}</h3>
         <p class="ticker__amount">{{ ticker.amount }}</p>
-        <base-input
+        <base-num-input
           class="ticker__input"
           v-model="ticker.insertedAmount"
-          type="number"
           min="0"
         />
         <div class="ticker__buttons">

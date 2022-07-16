@@ -3,10 +3,10 @@
     <h2 class="form__heading">Cryptocurrency Converter</h2>
     <div class="form__group">
       <div class="form__item">
-        <base-input
+        <base-num-input
           @input="updateVsPrice"
+          @focusout="checkEmptyInput"
           v-model="mainPrice"
-          type="number"
           min="0"
         />
         <select
@@ -41,10 +41,10 @@
         </svg>
       </a>
       <div class="form__item">
-        <base-input
+        <base-num-input
           @input="updateMainPrice"
+          @focusout="checkEmptyInput"
           v-model="vsPrice"
-          type="number"
           min="0"
         />
         <select
@@ -118,6 +118,12 @@ export default {
   },
 
   methods: {
+    checkEmptyInput(event) {
+      if (event.target.value === "") {
+        event.target.value = 0;
+      }
+    },
+
     updateMainCurrency() {
       if (!this.mainCurrency) {
         this.mainCurrency = this.currenciesList[0];
