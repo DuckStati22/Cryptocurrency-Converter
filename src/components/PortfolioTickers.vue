@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: "PortfolioPageTickers",
+  name: "PortfolioTickers",
 
   props: {
     cryptoCurrenciesList: {

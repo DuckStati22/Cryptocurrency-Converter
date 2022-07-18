@@ -87,7 +87,7 @@
 
 <script>
 export default {
-  name: "ConverterPageForm",
+  name: "ConverterForm",
 
   props: {
     currenciesList: {

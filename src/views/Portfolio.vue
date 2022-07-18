@@ -1,19 +1,19 @@
 <template>
-  <div class="porfolio-page__wrapper">
-    <portfolio-page-tickers
+  <div class="app__portfolio porfolio__wrapper">
+    <portfolio-tickers
       @updateTickers="updateTickers"
       :cryptoCurrenciesList="cryptoCurrenciesList"
-      class="porfolio-page__tickers"
+      class="porfolio__tickers"
     />
-    <section class="portfolio-page__no-tickers" v-if="haveNoTickers">
+    <section class="portfolio__no-tickers" v-if="haveNoTickers">
       <h2>Specify amount of cryptocurrency to get portfolio statistics</h2>
     </section>
     <template v-else>
-      <portfolio-page-evaluation
+      <portfolio-evaluation
         :tickersList="tickersList"
-        class="porfolio-page__evaluation"
+        class="porfolio__evaluation"
       />
-      <section class="porfolio-page__chart">
+      <section class="porfolio__chart">
         <h2 class="chart__heading">Portfolio chart</h2>
         <apexchart
           type="pie"
@@ -28,15 +28,15 @@
 
 <script>
 import VueApexCharts from "vue3-apexcharts";
-import PortfolioPageTickers from "./PortfolioPageTickers.vue";
-import PortfolioPageEvaluation from "./PortfolioPageEvaluation.vue";
+import PortfolioTickers from "../components/PortfolioTickers.vue";
+import PortfolioEvaluation from "../components/PortfolioEvaluation.vue";
 
 export default {
   name: "PortfolioPage",
   components: {
     apexchart: VueApexCharts,
-    PortfolioPageTickers,
-    PortfolioPageEvaluation,
+    PortfolioTickers,
+    PortfolioEvaluation,
   },
 
   props: {
@@ -144,24 +144,24 @@ export default {
 </script>
 
 <style scoped>
-.porfolio-page__wrapper {
+.porfolio__wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1.5fr 2fr;
   gap: 1.5vh;
 }
-.porfolio-page__tickers {
+.porfolio__tickers {
   grid-area: 1 / 1 / 2 / 3;
 }
-.portfolio-page__no-tickers {
+.portfolio__no-tickers {
   grid-area: 2 / 1 / 3 / 3;
   display: flex;
   align-items: center;
 }
-.porfolio-page__evaluation {
+.porfolio__evaluation {
   grid-area: 2 / 1 / 3 / 2;
 }
-.porfolio-page__chart {
+.porfolio__chart {
   grid-area: 2 / 2 / 3 / 3;
   display: flex;
   flex-direction: column;
@@ -169,21 +169,21 @@ export default {
 }
 
 @media screen and (max-width: 675px) {
-  .porfolio-page__wrapper {
+  .porfolio__wrapper {
     gap: 0;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr) 1.5fr;
   }
-  .porfolio-page__tickers {
+  .porfolio__tickers {
     grid-area: 1 / 1 / 2 / 2;
   }
-  .portfolio-page__no-tickers {
+  .portfolio__no-tickers {
     grid-area: 2 / 1 / 4 / 2;
   }
-  .porfolio-page__evaluation {
+  .porfolio__evaluation {
     grid-area: 2 / 1 / 3 / 2;
   }
-  .porfolio-page__chart {
+  .porfolio__chart {
     grid-area: 3 / 1 / 4 / 2;
     padding-top: 0;
   }
@@ -192,34 +192,34 @@ export default {
   }
 }
 @media screen and (max-width: 450px), screen and (max-height: 599px) {
-  .porfolio-page__wrapper {
+  .porfolio__wrapper {
     display: block;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
   }
-  .porfolio-page__tickers {
+  .porfolio__tickers {
     height: 100%;
     scroll-snap-align: start;
   }
-  .portfolio-page__no-tickers {
+  .portfolio__no-tickers {
     scroll-snap-align: start;
     height: 100%;
   }
-  .porfolio-page__evaluation {
+  .porfolio__evaluation {
     height: 50%;
     scroll-snap-align: start;
   }
-  .porfolio-page__chart {
+  .porfolio__chart {
     height: 50%;
   }
 }
 
 @media screen and (max-height: 535px) {
-  .porfolio-page__evaluation {
+  .porfolio__evaluation {
     height: 100%;
   }
-  .porfolio-page__chart {
+  .porfolio__chart {
     height: 100%;
     scroll-snap-align: start;
   }

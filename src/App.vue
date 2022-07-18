@@ -1,24 +1,16 @@
 <template>
   <div class="app__wrapper">
-    <navigation-bar @changePage="changePage" class="app__nav" />
-    <converter-page
-      v-if="currentPage === 'converter'"
+    <navigation-bar class="app__nav" />
+    <router-view
       :currenciesList="currenciesList"
-      class="app__converter-page"
-    />
-    <portfolio-page
-      v-if="currentPage === 'portfolio'"
       :cryptoCurrenciesList="cryptoCurrenciesList"
-      class="app__portfolio-page"
-    />
+    ></router-view>
   </div>
 </template>
 
 <script>
 import { loadPrices } from "./api";
 import NavigationBar from "./components/NavigationBar.vue";
-import ConverterPage from "./components/ConverterPage.vue";
-import PortfolioPage from "./components/PortfolioPage.vue";
 import "large-small-dynamic-viewport-units-polyfill";
 
 export default {
@@ -26,8 +18,6 @@ export default {
 
   components: {
     NavigationBar,
-    ConverterPage,
-    PortfolioPage,
   },
 
   data() {
@@ -52,15 +42,10 @@ export default {
           prices: {},
         },
       ],
-
-      currentPage: "converter",
     };
   },
 
   created() {
-    if (localStorage.getItem("currentPage")) {
-      this.currentPage = localStorage.getItem("currentPage");
-    }
     this.updatePrices();
   },
 
@@ -80,11 +65,6 @@ export default {
         item.prices = pricesArr[index];
       });
     },
-
-    changePage(page) {
-      this.currentPage = page;
-      localStorage.setItem("currentPage", this.currentPage);
-    },
   },
 };
 </script>
@@ -103,8 +83,8 @@ export default {
 .app__nav {
   flex: 0 0 60px;
 }
-.app__converter-page,
-.app__portfolio-page {
+.app__converter,
+.app__portfolio {
   flex: 1 1 auto;
 }
 

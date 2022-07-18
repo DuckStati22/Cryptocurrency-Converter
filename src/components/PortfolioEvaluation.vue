@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: "PortfolioPageEvaluation",
+  name: "PortfolioEvaluation",
   props: {
     tickersList: {
       type: Array,

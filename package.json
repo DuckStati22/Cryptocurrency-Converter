@@ -12,6 +12,7 @@
     "core-js": "^3.8.3",
     "large-small-dynamic-viewport-units-polyfill": "^0.0.4",
     "vue": "^3.2.13",
+    "vue-router": "^4.1.2",
     "vue3-apexcharts": "^1.4.1"
   },
   "devDependencies": {

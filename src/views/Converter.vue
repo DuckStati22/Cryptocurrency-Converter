@@ -1,12 +1,12 @@
 <template>
-  <div class="converter-page__wrapper">
-    <converter-page-form
+  <div class="app__converter converter__wrapper">
+    <converter-form
       @updateCurrenciesName="updateChartData"
       :currenciesList="currenciesList"
-      class="converter-page__form"
+      class="converter__form"
     />
-    <section class="converter-page__chart">
-      <h2 class="converter-page__heading">Two-week currencies chart</h2>
+    <section class="converter__chart">
+      <h2 class="converter__heading">Two-week currencies chart</h2>
       <apexchart
         type="area"
         height="80%"
@@ -20,14 +20,14 @@
 <script>
 import { loadChartData } from "../api";
 import VueApexCharts from "vue3-apexcharts";
-import ConverterPageForm from "./ConverterPageForm.vue";
+import ConverterForm from "../components/ConverterForm.vue";
 
 export default {
   name: "ConverterPage",
 
   components: {
     apexchart: VueApexCharts,
-    ConverterPageForm,
+    ConverterForm,
   },
 
   props: {
@@ -149,15 +149,15 @@ export default {
 </script>
 
 <style scoped>
-.converter-page__wrapper {
+.converter__wrapper {
   display: flex;
   flex-direction: column;
   gap: 1.5vh;
 }
-.converter-page__form {
+.converter__form {
   flex: 1 1 auto;
 }
-.converter-page__chart {
+.converter__chart {
   flex: 1 1 60%;
   display: flex;
   flex-direction: column;
@@ -165,7 +165,7 @@ export default {
 }
 
 @media screen and (max-width: 675px) {
-  .converter-page__wrapper {
+  .converter__wrapper {
     gap: 0;
   }
 }
@@ -176,7 +176,7 @@ export default {
     height: 100%;
     scroll-snap-align: start;
   }
-  .converter-page__wrapper {
+  .converter__wrapper {
     display: block;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;

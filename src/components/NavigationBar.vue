@@ -1,6 +1,6 @@
 <template>
   <nav class="nav">
-    <a class="nav__button" @click="changePage"
+    <router-link to="/" class="nav__button"
       ><svg
         class="nav__svg"
         width="24"
@@ -16,8 +16,8 @@
         />
       </svg>
       CONVERTER
-    </a>
-    <a class="nav__button" @click="changePage"
+    </router-link>
+    <router-link to="/portfolio" class="nav__button"
       >PORTFOLIO
       <svg
         class="nav__svg"
@@ -31,24 +31,16 @@
         <path
           d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"
         /></svg
-    ></a>
+    ></router-link>
   </nav>
 </template>
 
 <script>
 export default {
   name: "NavigationBar",
-  emits: ["changePage"],
 
   data() {
     return {};
-  },
-
-  methods: {
-    changePage(event) {
-      const linkName = event.currentTarget.innerText.trim().toLowerCase();
-      this.$emit("changePage", linkName);
-    },
   },
 };
 </script>
