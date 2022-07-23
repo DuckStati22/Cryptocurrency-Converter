@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Converter from "../views/Converter.vue";
 import Portfolio from "../views/Portfolio.vue";
 
@@ -15,7 +15,7 @@ const routes = [
 
 const router = createRouter({
   routes,
-  history: createWebHistory("/cryptocurrency-converter/"),
+  history: createWebHashHistory(),
 });
 
 export default router;
